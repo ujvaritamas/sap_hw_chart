@@ -1,0 +1,16 @@
+name: default_name
+replicas: 1
+
+configmap:
+  configmap_mountpath: /path/to/defaultpath
+  configmap_data:
+    content: |
+      default content
+    filename: "defult.txt"
+
+flask_app:
+  port: 8080
+  image: tamasujvari/flask-app-sap:latest
+
+service:
+  port: 8081

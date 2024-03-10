@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   name: {{ .Values.name }}-deployment
 spec:
-  replicas: {{ .Values.replicaCount }}
+  replicas: {{ .Values.replicas }}
   selector:
     matchLabels:
       app: {{ .Values.name }}
@@ -14,15 +14,15 @@ spec:
     spec:
       containers:
       - name: {{ .Values.name }}-cont
-        image: {{ .Values.image }}
+        image: {{ .Values.flask_app.image }}
         ports:
-        - containerPort: {{ .Values.app.port }}
+        - containerPort: {{ .Values.flask_app.port }}
         env:
         - name: FILE_PATH
-          value: "{{ .Values.configMapMountPath }}/{{ .Values.configMapData.fileName }}" #"/test/exampledir/example.txt"
+          value: "{{ .Values.configmap.configmap_mountpath }}/{{ .Values.configmap.configmap_data.filename }}"
         volumeMounts:
         - name: config-volume
-          mountPath: "{{ .Values.configMapMountPath }}"
+          mountPath: "{{ .Values.configmap.configmap_mountpath  }}"
       volumes:
       - name: config-volume
         configMap:
