@@ -3,4 +3,4 @@ kind: ConfigMap
 metadata:
   name: {{ .Values.name }}-configmap
 data:
-  {{ .Values.configmap.configmap_data.file_name }}: {{ .Values.configmap.configmap_data.content | quote }}
+  {{ .Values.configmap.configmap_data.filename }}: {{ .Values.configmap.configmap_data.content | quote }}
